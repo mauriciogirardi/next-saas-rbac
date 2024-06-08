@@ -3,11 +3,12 @@ import { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 
+import { PATH_USERS } from '@/constants/path-routes'
 import { prisma } from '@/lib/prisma'
 
 export async function createAccount(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
-    '/users',
+    PATH_USERS,
     {
       schema: {
         tags: ['auth'],
@@ -17,6 +18,14 @@ export async function createAccount(app: FastifyInstance) {
           email: z.string().email(),
           password: z.string().min(6),
         }),
+        response: {
+          400: z.object({
+            message: z
+              .string()
+              .default('User with same e-mail already exists.'),
+          }),
+          201: z.void(),
+        },
       },
     },
     async (request, reply) => {
@@ -29,7 +38,6 @@ export async function createAccount(app: FastifyInstance) {
       if (userWithSameEmail) {
         return reply.status(400).send({
           message: 'User with same e-mail already exists.',
-          type: 'error',
         })
       }
 
