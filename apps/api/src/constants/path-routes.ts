@@ -6,3 +6,5 @@ export const PATH_PASSWORD_RECOVER = '/password/recover'
 export const PATH_PASSWORD_RESET = '/password/reset'
 export const PATH_DOCS = '/docs'
 export const PATH_ORGANIZATION = '/organization'
+export const PATH_ORGANIZATION_SLUG_MEMBERSHIP =
+  '/organization/:slug/membership'
