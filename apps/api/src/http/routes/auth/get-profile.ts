@@ -18,6 +18,7 @@ export async function getProfile(app: FastifyInstance) {
         schema: {
           tags: ['auth'],
           summary: 'Get authenticated user profile.',
+          security: [{ bearerAuth: [] }],
           response: {
             400: z.object({
               message: z.string().default('User not found.'),

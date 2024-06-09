@@ -1,3 +1,4 @@
+import { env } from '@saas/env'
 import { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
@@ -39,7 +40,7 @@ export async function requestPasswordRecover(app: FastifyInstance) {
       })
 
       // TODO: send e-mail with password recover link.
-      process.env.NODE_ENV !== 'production' &&
+      env.NODE_ENV !== 'production' &&
         console.info('Recover password token:', code)
 
       return reply.status(201).send()
