@@ -9,4 +9,5 @@ export const PATH_ORGANIZATION = '/organization'
 export const PATH_ORGANIZATION_SLUG_MEMBERSHIP =
   '/organization/:slug/membership'
 export const PATH_ORGANIZATIONS_SLUG = '/organizations/:slug'
+export const PATH_ORGANIZATIONS_SLUG_OWNER = '/organizations/:slug/owner'
 export const PATH_ORGANIZATIONS = '/organizations'
