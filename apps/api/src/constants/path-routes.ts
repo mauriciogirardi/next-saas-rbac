@@ -8,3 +8,5 @@ export const PATH_DOCS = '/docs'
 export const PATH_ORGANIZATION = '/organization'
 export const PATH_ORGANIZATION_SLUG_MEMBERSHIP =
   '/organization/:slug/membership'
+export const PATH_ORGANIZATIONS_SLUG = '/organizations/:slug'
+export const PATH_ORGANIZATIONS = '/organizations'

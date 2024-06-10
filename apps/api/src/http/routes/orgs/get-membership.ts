@@ -30,13 +30,13 @@ export async function getMembership(app: FastifyInstance) {
           },
         },
       },
-      async (request, replay) => {
+      async (request, reply) => {
         const { slug } = request.params
         const {
           membership: { role, id, organizationId },
         } = await request.getUserMembership(slug)
 
-        return replay.status(200).send({
+        return reply.status(200).send({
           membership: {
             role,
             id,

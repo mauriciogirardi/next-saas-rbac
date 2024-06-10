@@ -35,7 +35,7 @@ export async function createOrganization(app: FastifyInstance) {
           },
         },
       },
-      async (request, replay) => {
+      async (request, reply) => {
         const userId = await request.getCurrentUserId()
         const { name, domain, shouldAttachUsersByDomain } = request.body
 
@@ -67,7 +67,7 @@ export async function createOrganization(app: FastifyInstance) {
           },
         })
 
-        return replay.status(201).send({ organizationId: organization.id })
+        return reply.status(201).send({ organizationId: organization.id })
       },
     )
 }
