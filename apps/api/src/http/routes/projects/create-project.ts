@@ -32,6 +32,9 @@ export async function createProject(app: FastifyInstance) {
             201: z.object({
               projectId: z.string().uuid(),
             }),
+            401: z.object({
+              message: z.string(),
+            }),
           },
         },
       },
