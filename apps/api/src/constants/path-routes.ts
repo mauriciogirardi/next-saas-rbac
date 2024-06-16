@@ -16,3 +16,6 @@ export const PATH_ORGANIZATIONS_ORGS_SLUG_PROJECTS_PROJECTS_SLUG =
   '/organizations/:orgSlug/projects/:projectSlug'
 export const PATH_ORGANIZATIONS_SLUG_OWNER = '/organizations/:slug/owner'
 export const PATH_ORGANIZATIONS = '/organizations'
+export const PATH_ORGANIZATIONS_SLUG_MEMBERS = '/organizations/:slug/members'
+export const PATH_ORGANIZATIONS_SLUG_MEMBERS_MEMBER_ID =
+  '/organizations/:slug/members/:memberId'

@@ -17,7 +17,11 @@ export async function getOrganizations(app: FastifyInstance) {
           200: z.object({
             organizations: z.array(
               z.object({
-                role: z.string(),
+                role: z.union([
+                  z.literal('ADMIN'),
+                  z.literal('MEMBER'),
+                  z.literal('BILLING'),
+                ]),
                 id: z.string().uuid(),
                 name: z.string(),
                 slug: z.string(),
