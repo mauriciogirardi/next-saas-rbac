@@ -31,22 +31,22 @@ export async function authenticateWithGithub(app: FastifyInstance) {
     async (request, reply) => {
       const { code } = request.body
 
-      const githubOAuthUrl = new URL(
-        'https://github.com/login/oauth/acess_token',
+      const githubOAuthURL = new URL(
+        'https://github.com/login/oauth/access_token',
       )
 
-      githubOAuthUrl.searchParams.set('client_id', env.GITHUB_OAUTH_CLIENT_ID)
-      githubOAuthUrl.searchParams.set(
+      githubOAuthURL.searchParams.set('client_id', env.GITHUB_OAUTH_CLIENT_ID)
+      githubOAuthURL.searchParams.set(
         'client_secret',
         env.GITHUB_OAUTH_CLIENT_SECRET,
       )
-      githubOAuthUrl.searchParams.set(
+      githubOAuthURL.searchParams.set(
         'redirect_uri',
         env.GITHUB_OAUTH_CLIENT_REDIRECT_URI,
       )
-      githubOAuthUrl.searchParams.set('code', code)
+      githubOAuthURL.searchParams.set('code', code)
 
-      const githubAccessTokenResponse = await fetch(githubOAuthUrl, {
+      const githubAccessTokenResponse = await fetch(githubOAuthURL, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -55,7 +55,7 @@ export async function authenticateWithGithub(app: FastifyInstance) {
 
       const githubAccessTokenData = await githubAccessTokenResponse.json()
 
-      const { access_token: accessToken } = z
+      const { access_token: githubAccessToken } = z
         .object({
           access_token: z.string(),
           token_type: z.literal('bearer'),
@@ -65,7 +65,7 @@ export async function authenticateWithGithub(app: FastifyInstance) {
 
       const githubUserResponse = await fetch('https://api.github.com/user', {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${githubAccessToken}`,
         },
       })
 
