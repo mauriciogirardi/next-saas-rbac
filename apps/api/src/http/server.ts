@@ -46,6 +46,8 @@ import { updateProject } from './routes/projects/update-project'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
+app.register(fastifyCors, { origin: '*' })
+
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
 
@@ -74,7 +76,6 @@ app.register(fastifySwagger, {
 app.register(fastifySwaggerUi, { routePrefix: PATH_DOCS })
 
 app.register(fastifyJwt, { secret: env.JWT_SECRET })
-app.register(fastifyCors)
 
 app.register(createAccount)
 app.register(authenticateWithPassword)
