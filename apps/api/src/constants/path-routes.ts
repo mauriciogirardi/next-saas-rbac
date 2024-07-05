@@ -26,7 +26,7 @@ export const PATH_ORGANIZATIONS_ORGS_SLUG_PROJECTS_PROJECTS_SLUG =
 // MEMBERS PATHS
 export const PATH_ORGANIZATIONS_SLUG_MEMBERS = '/organizations/:slug/members'
 export const PATH_ORGANIZATION_SLUG_MEMBERSHIP =
-  '/organization/:slug/membership'
+  '/organizations/:slug/membership'
 export const PATH_ORGANIZATIONS_SLUG_MEMBERS_MEMBER_ID =
   '/organizations/:slug/members/:memberId'
 
