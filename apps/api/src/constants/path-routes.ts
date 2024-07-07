@@ -8,7 +8,7 @@ export const PATH_PASSWORD_RESET = '/password/reset'
 export const PATH_DOCS = '/docs'
 
 // ORGANIZATIONS PATHS
-export const PATH_ORGANIZATION = '/organization'
+export const PATH_ORGANIZATION = '/organizations'
 export const PATH_ORGANIZATIONS = '/organizations'
 export const PATH_ORGANIZATIONS_SLUG_OWNER = '/organizations/:slug/owner'
 export const PATH_ORGANIZATIONS_SLUG = '/organizations/:slug'

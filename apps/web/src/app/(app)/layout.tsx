@@ -5,12 +5,19 @@ import { PATH_AUTH_SIGN_IN } from '@/constants/paths-application'
 
 export default function AppLayout({
   children,
+  sheet,
 }: Readonly<{
   children: React.ReactNode
+  sheet: React.ReactNode
 }>) {
   if (!isAuthenticated()) {
     redirect(PATH_AUTH_SIGN_IN)
   }
 
-  return <>{children}</>
+  return (
+    <>
+      {children}
+      {sheet}
+    </>
+  )
 }
