@@ -25,11 +25,11 @@ export async function OrganizationSwitcher() {
   )
 
   return (
-    <DropdownMenu>
+    <DropdownMenu key="organization">
       <DropdownMenuTrigger className="group flex w-[168px] items-center gap-2 p-1 text-sm font-medium  outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-primary">
         {currentOrganization ? (
           <>
-            <Avatar className="mr-2 size-5">
+            <Avatar className="size-5">
               {currentOrganization.avatarUrl && (
                 <AvatarImage src={currentOrganization.avatarUrl} />
               )}
