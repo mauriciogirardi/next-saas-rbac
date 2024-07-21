@@ -1,3 +1,5 @@
+import { Role } from '@saas/auth'
+
 import { api } from './api-client'
 
 export type GetOrganizationsResponse = {
@@ -6,6 +8,7 @@ export type GetOrganizationsResponse = {
     name: string
     slug: string
     avatarUrl: string | null
+    role: Role
   }[]
 }
 

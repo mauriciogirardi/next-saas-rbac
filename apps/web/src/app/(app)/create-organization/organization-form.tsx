@@ -36,7 +36,7 @@ export function OrganizationForm({ isSheet = false }: TOrganizationFormProps) {
         </Alert>
       )}
       {success === true && message && (
-        <Alert variant="success" className="animate-message ml-auto w-max">
+        <Alert variant="success" className="ml-auto w-max animate-message">
           <AlertTriangle className="size-4" />
           <AlertTitle>Success!</AlertTitle>
           <AlertDescription>

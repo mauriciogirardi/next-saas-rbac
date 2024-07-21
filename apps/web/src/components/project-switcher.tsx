@@ -62,7 +62,7 @@ export function ProjectSwitcher() {
                 </span>
               </>
             ) : (
-              <span className="text-muted-foreground group-hover:text-muted-foreground/70">
+              <span className="group-hover:text-muted-foreground/70">
                 Select project
               </span>
             )}
