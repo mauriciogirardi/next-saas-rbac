@@ -1,7 +1,7 @@
 export default function Project() {
   return (
     <div>
-      <p>Project</p>
+      <h1 className="text-2xl font-bold">Project</h1>
     </div>
   )
 }

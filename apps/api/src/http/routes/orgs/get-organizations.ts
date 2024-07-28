@@ -64,10 +64,12 @@ export async function getOrganizations(app: FastifyInstance) {
         })
 
         const organizationsWithUserRole = organizations.map(
-          ({ members, ...orgs }) => ({
-            ...orgs,
-            role: members[0].role,
-          }),
+          ({ members, ...org }) => {
+            return {
+              ...org,
+              role: members[0].role,
+            }
+          },
         )
 
         return reply

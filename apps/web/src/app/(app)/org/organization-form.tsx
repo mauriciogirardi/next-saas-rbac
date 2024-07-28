@@ -10,16 +10,30 @@ import { Label } from '@/components/ui/label'
 import { useFormState } from '@/hook/use-form-state'
 import { cn } from '@/lib/utils'
 
-import { createOrganizationAction } from './actions'
+import {
+  createOrganizationAction,
+  OrganizationSchema,
+  updateOrganizationAction,
+} from './actions'
 
 type TOrganizationFormProps = {
   isSheet?: boolean
+  isUpdating?: boolean
+  initialData?: OrganizationSchema
 }
 
-export function OrganizationForm({ isSheet = false }: TOrganizationFormProps) {
-  const [{ message, errors, success }, handleAction, isPending] = useFormState(
-    createOrganizationAction,
-  )
+export function OrganizationForm({
+  isSheet = false,
+  isUpdating = false,
+  initialData,
+}: TOrganizationFormProps) {
+  const title = isUpdating ? 'Update' : 'Save'
+  const formAction = isUpdating
+    ? updateOrganizationAction
+    : createOrganizationAction
+
+  const [{ message, errors, success }, handleAction, isPending] =
+    useFormState(formAction)
 
   return (
     <form
@@ -29,7 +43,7 @@ export function OrganizationForm({ isSheet = false }: TOrganizationFormProps) {
       {success === false && message && (
         <Alert variant="destructive">
           <AlertTriangle className="size-4" />
-          <AlertTitle>Save organization failed!</AlertTitle>
+          <AlertTitle> {title} organization failed!</AlertTitle>
           <AlertDescription>
             <p>{message}</p>
           </AlertDescription>
@@ -53,7 +67,7 @@ export function OrganizationForm({ isSheet = false }: TOrganizationFormProps) {
       >
         <div className={cn('space-y-1', isSheet ? 'w-full' : 'flex-1')}>
           <Label htmlFor="name">Organization name</Label>
-          <Input name="name" id="name" />
+          <Input name="name" id="name" defaultValue={initialData?.name} />
           {errors?.name && (
             <p className="text-xs text-red-500 transition-all dark:text-red-400">
               {errors.name[0]}
@@ -68,6 +82,7 @@ export function OrganizationForm({ isSheet = false }: TOrganizationFormProps) {
             id="domain"
             inputMode="url"
             placeholder="exemplo.com"
+            defaultValue={initialData?.domain ?? undefined}
           />
           {errors?.domain && (
             <p className="text-xs text-red-500 transition-all dark:text-red-400">
@@ -83,6 +98,7 @@ export function OrganizationForm({ isSheet = false }: TOrganizationFormProps) {
             <Checkbox
               name="shouldAttachUsersByDomain"
               id="shouldAttachUsersByDomain"
+              defaultChecked={initialData?.shouldAttachUsersByDomain}
             />
           </div>
           <label htmlFor="shouldAttachUsersByDomain" className="space-y-1">
@@ -104,7 +120,7 @@ export function OrganizationForm({ isSheet = false }: TOrganizationFormProps) {
           disabled={isPending}
         >
           {isPending && <Loader2 className="size-4 animate-spin" />}
-          {!isPending && 'Save organization'}
+          {!isPending && `${title} organization`}
         </Button>
       </div>
     </form>
