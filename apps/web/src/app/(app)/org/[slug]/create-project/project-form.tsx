@@ -24,10 +24,7 @@ export function ProjectForm() {
   )
 
   return (
-    <form
-      className="animate-opacity space-y-4 overflow-x-hidden p-2"
-      onSubmit={handleAction}
-    >
+    <form className="space-y-4 overflow-x-hidden p-2" onSubmit={handleAction}>
       {success === false && message && (
         <Alert variant="destructive">
           <AlertTriangle className="size-4" />

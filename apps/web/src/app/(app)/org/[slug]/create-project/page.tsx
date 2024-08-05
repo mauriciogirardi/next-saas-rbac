@@ -13,7 +13,7 @@ export default async function CreateProject() {
 
   return (
     <>
-      <h1 className="text-2xl font-bold">Create Project</h1>
+      <h1 className="animate-opacity text-2xl font-bold">Create Project</h1>
       <ProjectForm />
     </>
   )

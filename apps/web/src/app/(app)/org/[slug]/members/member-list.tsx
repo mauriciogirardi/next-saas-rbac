@@ -10,6 +10,7 @@ import { getMembership } from '@/http/get-membership'
 import { getOrganization } from '@/http/get-organization'
 
 import { removeMemberAction } from './actions'
+import { UpdateMemberRoleSelect } from './update-member-role-select'
 
 export async function MemberList() {
   const currentOrg = getCurrentOrg()
@@ -29,7 +30,7 @@ export async function MemberList() {
       <div className="rounded border">
         <Table>
           <TableBody>
-            {members?.map(({ user, id }) => (
+            {members?.map(({ user, id, role }) => (
               <TableRow key={id}>
                 <TableCell className="py-2.5" style={{ width: 48 }}>
                   <Avatar>
@@ -74,6 +75,17 @@ export async function MemberList() {
                         <ArrowLeftRight className="mr-2 size-4" />
                         Transfer ownership
                       </Button>
+                    )}
+
+                    {permissions?.can('update', 'User') && (
+                      <UpdateMemberRoleSelect
+                        memberId={id}
+                        value={role}
+                        disabled={
+                          user.id === membership.userId ||
+                          user.id === organization.ownerId
+                        }
+                      />
                     )}
 
                     {permissions?.can('delete', 'User') && (

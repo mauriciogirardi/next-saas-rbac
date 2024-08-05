@@ -1,7 +1,7 @@
 export default function Projects() {
   return (
     <div>
-      <h1 className="text-2xl font-bold">Projects</h1>
+      <h1 className="animate-opacity text-2xl font-bold">Projects</h1>
     </div>
   )
 }

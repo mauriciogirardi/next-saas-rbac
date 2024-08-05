@@ -22,7 +22,7 @@ export default async function SettingsPage() {
   const { organization } = await getOrganization(currentOrg!)
 
   return (
-    <div className="space-y-4">
+    <div className="animate-opacity space-y-4">
       {canUpdateOrganization && (
         <Card>
           <CardHeader>

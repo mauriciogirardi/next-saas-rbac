@@ -4,7 +4,7 @@ import { OrganizationForm } from '../org/organization-form'
 
 export default function CreateOrganization() {
   return (
-    <div className="py-4">
+    <div className="animate-opacity py-4">
       <Header />
       <main className="mx-auto w-full max-w-[1280px] space-y-4 px-4">
         <h1 className="text-2xl font-bold">Create Organization</h1>
