@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 
 import { getProjects } from '@/http/get-projects'
+import { getInitials } from '@/utils/getInitials'
 
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import {
@@ -52,7 +53,9 @@ export function ProjectSwitcher() {
                   {currentProject.avatarUrl && (
                     <AvatarImage src={currentProject.avatarUrl} />
                   )}
-                  <AvatarFallback />
+                  <AvatarFallback>
+                    {getInitials(currentProject.name)}
+                  </AvatarFallback>
                 </Avatar>
                 <span
                   className="truncate text-left group-hover:opacity-70"
@@ -89,7 +92,9 @@ export function ProjectSwitcher() {
               <Link href={`/org/${orgSlug}/project/${project.slug}`}>
                 <Avatar className="mr-2 size-5">
                   {project.avatarUrl && <AvatarImage src={project.avatarUrl} />}
-                  <AvatarFallback />
+                  <AvatarFallback className="text-[8px]">
+                    {getInitials(project.name)}
+                  </AvatarFallback>
                 </Avatar>
                 <span className="line-clamp-1">{project.name}</span>
               </Link>

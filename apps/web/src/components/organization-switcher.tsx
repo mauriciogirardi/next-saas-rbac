@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { getCurrentOrg } from '@/auth/auth'
 import { PATH_CREATE_ORGANIZATION } from '@/constants/paths-application'
 import { getOrganizations } from '@/http/get-organizations'
+import { getInitials } from '@/utils/getInitials'
 
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import {
@@ -33,7 +34,9 @@ export async function OrganizationSwitcher() {
               {currentOrganization.avatarUrl && (
                 <AvatarImage src={currentOrganization.avatarUrl} />
               )}
-              <AvatarFallback />
+              <AvatarFallback className="text-[8px]">
+                {getInitials(currentOrganization.name)}
+              </AvatarFallback>
             </Avatar>
             <span
               className="truncate text-left group-hover:opacity-70"
@@ -64,7 +67,9 @@ export async function OrganizationSwitcher() {
               <Link href={`/org/${org.slug}`}>
                 <Avatar className="mr-2 size-5">
                   {org.avatarUrl && <AvatarImage src={org.avatarUrl} />}
-                  <AvatarFallback />
+                  <AvatarFallback className="text-[8px]">
+                    {getInitials(org.name)}
+                  </AvatarFallback>
                 </Avatar>
                 <span className="line-clamp-1">{org.name}</span>
               </Link>

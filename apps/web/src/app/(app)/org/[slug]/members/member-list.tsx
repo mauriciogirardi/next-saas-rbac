@@ -8,6 +8,7 @@ import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { getMembers } from '@/http/get-members'
 import { getMembership } from '@/http/get-membership'
 import { getOrganization } from '@/http/get-organization'
+import { getInitials } from '@/utils/getInitials'
 
 import { removeMemberAction } from './actions'
 import { UpdateMemberRoleSelect } from './update-member-role-select'
@@ -34,7 +35,7 @@ export async function MemberList() {
               <TableRow key={id}>
                 <TableCell className="py-2.5" style={{ width: 48 }}>
                   <Avatar>
-                    <AvatarFallback />
+                    <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
                     {user.avatarUrl && (
                       <AvatarImage
                         src={user.avatarUrl}
@@ -83,7 +84,8 @@ export async function MemberList() {
                         value={role}
                         disabled={
                           user.id === membership.userId ||
-                          user.id === organization.ownerId
+                          user.id === organization.ownerId ||
+                          permissions?.cannot('update', 'User')
                         }
                       />
                     )}

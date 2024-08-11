@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { getProjects } from '@/http/get-projects'
+import { getInitials } from '@/utils/getInitials'
 
 dayjs.extend(relativeTime)
 
@@ -43,7 +44,9 @@ export async function ProjectList() {
                 {project.owner.avatarUrl && (
                   <AvatarImage src={project.owner.avatarUrl} />
                 )}
-                <AvatarFallback>{project.owner.name}</AvatarFallback>
+                <AvatarFallback className="text-[6px]">
+                  {getInitials(project.owner.name)}
+                </AvatarFallback>
               </Avatar>
 
               <span className="text-sm text-muted-foreground">
