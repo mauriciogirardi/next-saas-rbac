@@ -48,7 +48,10 @@ const app = fastify().withTypeProvider<ZodTypeProvider>()
 
 app.register(fastifyCors, {
   origin: (origin, callback) => {
-    const allowedOrigins = [env.NEXT_PUBLIC_API_URI]
+    const allowedOrigins = [
+      'https://in-dev.vercel.app',
+      'http://localhost:3000',
+    ]
 
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true)
