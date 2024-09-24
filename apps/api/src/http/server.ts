@@ -46,7 +46,17 @@ import { updateProject } from './routes/projects/update-project'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
-app.register(fastifyCors, { origin: '*' })
+app.register(fastifyCors, {
+  origin: (origin, callback) => {
+    const allowedOrigins = [env.NEXT_PUBLIC_API_URI]
+
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'), false)
+    }
+  },
+})
 
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
@@ -112,6 +122,6 @@ app.register(getPendingInvites)
 
 app.register(getOrganizationBilling)
 
-app.listen({ port: env.PORT }).then(() => {
+app.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
   console.info('HTTP server running!')
 })
